@@ -4,6 +4,10 @@ import numpy as np
 
 # from thirtyRules import Ui_thirtyRules
 
+# in terminal
+# git branch
+# git checkout [branch name]
+
 scheduleArray = np.genfromtxt("./scheduleArrayScratch.csv", delimiter=',', dtype='str')
 if scheduleArray.size == 0:
     scheduleArray = np.array([[0,0,0,0,0,0,0]])
