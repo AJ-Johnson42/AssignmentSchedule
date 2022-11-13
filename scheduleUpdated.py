@@ -4,7 +4,7 @@ import numpy as np
 
 # from thirtyRules import Ui_thirtyRules
 
-scheduleArray = np.genfromtxt("/Users/aj/Desktop/PYTHON/projects/schedule/scheduleArrayScratch1.csv", delimiter=',', dtype='str')
+scheduleArray = np.genfromtxt("/Users/aj/Desktop/PYTHON/projects/schedule/TestArray.csv", delimiter=',', dtype='str')
 if scheduleArray.size == 0:
     scheduleArray = np.array([[0,0,0,0,0,0,0]])
 
@@ -193,7 +193,7 @@ class Ui_MainWindow(object):
         ninetyDateDif = dateDif * .9
         comments = self.lineEdit_3.text()
         
-        readArray = np.genfromtxt("/Users/aj/Desktop/PYTHON/projects/schedule/scheduleArrayScratch1.csv", delimiter=',', dtype='str')
+        readArray = np.genfromtxt("/Users/aj/Desktop/PYTHON/projects/schedule/TestArray.csv", delimiter=',', dtype='str')
         if readArray.size == 0:
             readArray = np.array([[0,0,0,0,0,0,0]])
         
@@ -205,8 +205,8 @@ class Ui_MainWindow(object):
         
         # if same descrition and same comments on the same day take the highest percentage
         
-        np.savetxt("/Users/aj/Desktop/PYTHON/projects/schedule/scheduleArrayScratch1.csv", _scheduleArray, delimiter=",", fmt='%s')
-        rereadArray = np.genfromtxt("/Users/aj/Desktop/PYTHON/projects/schedule/scheduleArrayScratch1.csv", delimiter=',', dtype='str')
+        np.savetxt("/Users/aj/Desktop/PYTHON/projects/schedule/TestArray.csv", _scheduleArray, delimiter=",", fmt='%s')
+        rereadArray = np.genfromtxt("/Users/aj/Desktop/PYTHON/projects/schedule/TestArray.csv", delimiter=',', dtype='str')
  
         currentDate = QtCore.QDate.currentDate()
         for i in range(len(rereadArray)):
@@ -221,7 +221,7 @@ class Ui_MainWindow(object):
         # Clean up array
         rereadArray = cleanArray(cleanArray(rereadArray))
         
-        np.savetxt("/Users/aj/Desktop/PYTHON/projects/schedule/scheduleArrayScratch1.csv", rereadArray, delimiter=",", fmt='%s')
+        np.savetxt("/Users/aj/Desktop/PYTHON/projects/schedule/TestArray.csv", rereadArray, delimiter=",", fmt='%s')
         k = 0
         for i in range(len(rereadArray)):
             for j in range(0, 4):
