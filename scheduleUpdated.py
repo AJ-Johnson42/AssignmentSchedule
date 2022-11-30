@@ -8,7 +8,7 @@ import numpy as np
 # git branch
 # git checkout [branch name]
 
-scheduleArray = np.genfromtxt("./TestArray.csv", delimiter=',', dtype='str')
+scheduleArray = np.genfromtxt("/Users/aj/Desktop/Git/AssignmentSchedule/TestArray.csv", delimiter=',', dtype='str')
 if scheduleArray.size == 0:
     scheduleArray = np.array([[0,0,0,0,0,0,0]])
 
@@ -186,6 +186,8 @@ class Ui_MainWindow(object):
         self.pushButton_7.setText(_translate("MainWindow", "Complete")) 
 
     def on_pushButton_clicked(self):
+        if self.lineEdit.text() == '' or self.lineEdit_2.text() == '' or self.lineEdit_3.text() == '' or self.lineEdit_4.text() == '':
+            return
         description = self.lineEdit.text()
         dateAssigned = self.dateEdit.date()
         _dateAssigned = dateAssigned.toPyDate()
@@ -197,7 +199,7 @@ class Ui_MainWindow(object):
         ninetyDateDif = dateDif * .9
         comments = self.lineEdit_3.text()
         
-        readArray = np.genfromtxt("./TestArray.csv", delimiter=',', dtype='str')
+        readArray = np.genfromtxt(".//Users/aj/Desktop/Git/AssignmentSchedule/TestArray.csv.csv", delimiter=',', dtype='str')
         if readArray.size == 0:
             readArray = np.array([[0,0,0,0,0,0,0]])
         
@@ -209,8 +211,8 @@ class Ui_MainWindow(object):
         
         # if same descrition and same comments on the same day take the highest percentage
         
-        np.savetxt("./TestArray.csv", _scheduleArray, delimiter=",", fmt='%s')
-        rereadArray = np.genfromtxt("./TestArray.csv", delimiter=',', dtype='str')
+        np.savetxt(".//Users/aj/Desktop/Git/AssignmentSchedule/TestArray.csv.csv", _scheduleArray, delimiter=",", fmt='%s')
+        rereadArray = np.genfromtxt(".//Users/aj/Desktop/Git/AssignmentSchedule/TestArray.csv.csv", delimiter=',', dtype='str')
  
         currentDate = QtCore.QDate.currentDate()
         for i in range(len(rereadArray)):
@@ -221,11 +223,9 @@ class Ui_MainWindow(object):
 
         rereadArray = rereadArray[rereadArray[:,2].astype(int).argsort()]
     
-        
-        # Clean up array
         rereadArray = cleanArray(cleanArray(rereadArray))
         
-        np.savetxt("./TestArray.csv", rereadArray, delimiter=",", fmt='%s')
+        np.savetxt(".//Users/aj/Desktop/Git/AssignmentSchedule/TestArray.csv.csv", rereadArray, delimiter=",", fmt='%s')
         k = 0
         for i in range(len(rereadArray)):
             for j in range(0, 4):
