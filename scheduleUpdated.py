@@ -4,7 +4,7 @@ import numpy as np
 
 # from thirtyRules import Ui_thirtyRules
 
-# in terminal
+# in terminal:
 # git branch
 # git checkout [branch name]
 
@@ -186,6 +186,8 @@ class Ui_MainWindow(object):
         self.pushButton_7.setText(_translate("MainWindow", "Complete")) 
 
     def on_pushButton_clicked(self):
+        if self.lineEdit.text() == '' or self.lineEdit_2.text() == '' or self.lineEdit_3.text() == '' or self.lineEdit_4.text() == '':
+            return
         description = self.lineEdit.text()
         dateAssigned = self.dateEdit.date()
         _dateAssigned = dateAssigned.toPyDate()
@@ -221,8 +223,6 @@ class Ui_MainWindow(object):
 
         rereadArray = rereadArray[rereadArray[:,2].astype(int).argsort()]
     
-        
-        # Clean up array
         rereadArray = cleanArray(cleanArray(rereadArray))
         
         np.savetxt("./scheduleArrayScratch.csv", rereadArray, delimiter=",", fmt='%s')
