@@ -1,12 +1,18 @@
+import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt
 import numpy as np
 
 # from thirtyRules import Ui_thirtyRules
 
-# in terminal
 # git branch
 # git checkout [branch name]
+# git add -A #adds all your changes to a commit list. Before commiting
+    # git hub desktop is where you can view your changes
+# git commit -m 'message'
+# git push #completes edits in dev branch
+# to complete dev to main changes go to github.com > repo > pull requests > new pull request > create pull request
+
 
 scheduleArray = np.genfromtxt("/Users/aj/Desktop/Git/AssignmentSchedule/TestArray.csv", delimiter=',', dtype='str')
 if scheduleArray.size == 0:
@@ -68,7 +74,7 @@ class Ui_MainWindow(object):
         self.pushButton.setCheckable(False)
         self.pushButton.setObjectName("pushButton")
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
-        self.tableWidget.setGeometry(QtCore.QRect(20, 40, 401, 431))
+        self.tableWidget.setGeometry(QtCore.QRect(20, 40, 401, 442))
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
@@ -256,16 +262,46 @@ class Ui_MainWindow(object):
         self.dateEdit_2.setDate(QtCore.QDate.currentDate())
     
     def on_pushButton_2_clicked(self):
-        print('hi')
+        print('p2')
+        #Switch screens without opening a new window when pushbutton
+        
     def on_pushButton_3_clicked(self):
-        print('hi')
+        print('p3')
     def on_pushButton_5_clicked(self):
-        print('hi') 
+        print('p5') 
     def on_pushButton_6_clicked(self):
-        print('hi')
+        print('p6')
     def on_pushButton_7_clicked(self):
-        print('hi') 
-    
+        print('p7') 
+        #switch screens without opening a new window when pushbutton to screen2
+        screen2 = Screen2()
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_MainWindow2()
+        self.ui.setupUi(self.window)
+        MainWindow.hide()
+        self.window.show()
+        MainWindow2.show()
+        
+        
+#create a new window called screen2 and inherit from QMainWindow
+class Screen2(Ui_MainWindow):
+    def __init__(self):
+        super().__init__()
+        self.title = "Screen 2"
+        self.top = 200
+        self.left = 500
+        self.width = 400
+        self.height = 300
+        self.InitWindow()
+        
+    def InitWindow(self):
+        self.setWindowTitle(self.title)
+        self.setGeometry(self.top, self.left, self.width, self.height)
+        self.show()
+
+        
+        
+        
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
