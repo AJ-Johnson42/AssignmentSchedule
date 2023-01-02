@@ -1,23 +1,29 @@
 import sys
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import Qt
+
 import numpy as np
+from PyQt5 import QtCore, QtGui, QtWidgets
+# import what is needed for self.setWindowTitle
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QDesktopWidget
+
 
 # from thirtyRules import Ui_thirtyRules
 
 # git branch
 # git checkout [branch name]
-# git add -A #adds all your changes to a commit list. Before commiting
+# git add -A 
+    # adds all your changes to a commit list. Before commiting 
+    # useful for when you are working on multiple file types 
+    # like pushing the checkmark on left side on files
     # git hub desktop is where you can view your changes
-# git commit -m 'message'
+# cmd+s to save before viewing it github desktop to see changes and commit
+# git commit -m 'message' #accept these changes and add them to a list to push them to a repository
 # git push #completes edits in dev branch
-# to complete dev to main changes go to github.com > repo > pull requests > new pull request > create pull request
+# pull request to complete dev to main changes go to github.com > repo > pull requests > new pull request > create pull request
 
 
 scheduleArray = np.genfromtxt("/Users/aj/Desktop/Git/AssignmentSchedule/TestArray.csv", delimiter=',', dtype='str')
 if scheduleArray.size == 0:
     scheduleArray = np.array([[0,0,0,0,0,0,0]])
-
 
 def cleanArray(rereadArray):
     for i in range(0, len(rereadArray)):
@@ -125,7 +131,7 @@ class Ui_MainWindow(object):
         self.pushButton_3.clicked.connect(self.on_pushButton_3_clicked) #Statistics
         self.pushButton_5.clicked.connect(self.on_pushButton_5_clicked) #Pushback
         self.pushButton_6.clicked.connect(self.on_pushButton_6_clicked) #Past Assignments
-        self.pushButton_7.clicked.connect(self.on_pushButton_7_clicked) #Complete
+        self.pushButton_7.clicked.connect(self.gotoscreen2) #Complete
 
         self.tableWidget.setRowCount(30)
         self.tableWidget.setColumnCount(4)
@@ -271,22 +277,21 @@ class Ui_MainWindow(object):
         print('p5') 
     def on_pushButton_6_clicked(self):
         print('p6')
+        
+        
     def on_pushButton_7_clicked(self):
-        print('p7') 
-        #switch screens without opening a new window when pushbutton to screen2
-        screen2 = Screen2()
-        self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_MainWindow2()
-        self.ui.setupUi(self.window)
-        MainWindow.hide()
-        self.window.show()
-        MainWindow2.show()
+        print('p7')
         
-        
+    def gotoscreen2(self):        
+        self.screen2= Screen2() 
+        widget.addWidget(screen2)
+        widget.setCurrentIndex(widget.currentIndex()+1)    
+    
 #create a new window called screen2 and inherit from QMainWindow
 class Screen2(Ui_MainWindow):
     def __init__(self):
-        super().__init__()
+        
+        super(Screen2, self).__init__()
         self.title = "Screen 2"
         self.top = 200
         self.left = 500
@@ -295,11 +300,9 @@ class Screen2(Ui_MainWindow):
         self.InitWindow()
         
     def InitWindow(self):
-        self.setWindowTitle(self.title)
+        self.setWindowTitle(self.title)  
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.show()
-
-        
         
         
 if __name__ == "__main__":
