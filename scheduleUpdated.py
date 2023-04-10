@@ -179,8 +179,8 @@ class Ui_MainWindow(object):
                     self.tableWidget.item(i, 2).setBackground(QtGui.QColor(0,129,158))
                 else: 
                     self.tableWidget.item(i, 2).setBackground(QtGui.QColor(35,155,86))
-                self.tableWidget.item(i, 1).setTextAlignment(Qt.AlignCenter)
-                self.tableWidget.item(i, 2).setTextAlignment(Qt.AlignCenter)
+                # self.tableWidget.item(i, 1).setTextAlignment(Qt.AlignCenter)
+                # self.tableWidget.item(i, 2).setTextAlignment(Qt.AlignCenter)
                                              
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -198,8 +198,8 @@ class Ui_MainWindow(object):
         self.pushButton_7.setText(_translate("MainWindow", "Complete")) 
 
     def on_pushButton_clicked(self):
-        if self.lineEdit.text() == '' or self.lineEdit_2.text() == '' or self.lineEdit_3.text() == '' or self.lineEdit_4.text() == '':
-            return
+        # if self.lineEdit.text() == '' or self.lineEdit_3.text() == '':
+        #     return
         description = self.lineEdit.text()
         dateAssigned = self.dateEdit.date()
         _dateAssigned = dateAssigned.toPyDate()
